@@ -1,2 +1,27 @@
-<h1>Breeds#index</h1>
-<p>Find me in app/views/breeds/index.html.erb</p>
+<h1>All Dog Breeds</h1>
+
+<p>Total Breeds: <%= @breeds.count %></p>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+    <th>Popularity</th>
+  </tr>
+
+  <% @breeds.each do |breed| %>
+    <tr>
+      <td>
+        <%= link_to breed.name, breed_path(breed) %>
+      </td>
+
+      <td>
+        <%= breed.group.name %>
+      </td>
+
+      <td>
+        <%= breed.popularity %>
+      </td>
+    </tr>
+  <% end %>
+</table>
