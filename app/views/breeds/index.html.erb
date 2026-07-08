@@ -1,5 +1,13 @@
 <h1>All Dog Breeds</h1>
 
+<%= form_with url: breeds_path, method: :get, local: true do |form| %>
+  <%= form.label :search, "Search Breed:" %>
+  <%= form.text_field :search, value: params[:search] %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<br>
+
 <p>Total Breeds: <%= @breeds.count %></p>
 
 <table border="1" cellpadding="8">
@@ -14,11 +22,9 @@
       <td>
         <%= link_to breed.name, breed_path(breed) %>
       </td>
-
       <td>
         <%= breed.group.name %>
       </td>
-
       <td>
         <%= breed.popularity %>
       </td>

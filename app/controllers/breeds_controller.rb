@@ -1,6 +1,10 @@
 class BreedsController < ApplicationController
   def index
-    @breeds = Breed.order(:name)
+    @breeds = Breed.includes(:group).order(:name)
+
+    if params[:search].present?
+      @breeds = @breeds.where("name LIKE ?", "%#{params[:search]}%")
+    end
   end
 
   def show
