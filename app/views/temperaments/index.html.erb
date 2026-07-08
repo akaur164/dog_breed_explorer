@@ -1,10 +1,16 @@
-<h1>Temperaments</h1>
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="mb-4">Temperaments</h1>
 
-<ul>
-  <% @temperaments.each do |temperament| %>
-    <li>
-      <%= link_to temperament.name, temperament_path(temperament) %>
-      (<%= temperament.breeds.count %> breeds)
-    </li>
-  <% end %>
-</ul>
+    <div class="list-group">
+      <% @temperaments.each do |temperament| %>
+        <%= link_to temperament_path(temperament), class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center" do %>
+          <span><%= temperament.name %></span>
+          <span class="badge bg-primary rounded-pill">
+            <%= temperament.breeds.count %> breeds
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
