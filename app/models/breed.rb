@@ -7,5 +7,5 @@ class Breed < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-  validates :popularity, numericality: { only_integer: true }, allow_nil: true
+  validates :popularity, numericality: { only_integer: true }, allow_blank: true
 end

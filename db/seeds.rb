@@ -12,9 +12,9 @@ CSV.foreach(csv_path, headers: true) do |row|
   group = Group.find_or_create_by!(name: row["group"])
 
   breed = Breed.create!(
-    name: row["breed"],
+    name: row[0],
     description: row["description"],
-    popularity: row["popularity"],
+    popularity: row["popularity"].presence&.to_i,
     min_height: row["min_height"],
     max_height: row["max_height"],
     min_weight: row["min_weight"],
