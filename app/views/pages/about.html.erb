@@ -1,2 +1,23 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<h1>About This Project</h1>
+
+<p>
+  Dog Breed Explorer is a Ruby on Rails application built using the AKC Dog Breed CSV dataset.
+  The dataset includes information about dog breed names, descriptions, popularity,
+  height, weight, life expectancy, grooming, shedding, energy level, trainability,
+  demeanor, group, and temperament.
+</p>
+
+<h2>Data Sources</h2>
+
+<ul>
+  <li>AKC Dog Breed CSV dataset</li>
+  <li>Sample review data created inside the Rails seed file</li>
+</ul>
+
+<h2>Database Design</h2>
+
+<p>
+  The application uses five models: Breed, Group, Temperament, BreedTemperament, and Review.
+</p>
+
+<%= image_tag "dog_breed_erd.png", alt: "Dog Breed Explorer ERD", style: "max-width: 100%;" %>
