@@ -1,2 +1,10 @@
-<h1>Temperaments#index</h1>
-<p>Find me in app/views/temperaments/index.html.erb</p>
+<h1>Temperaments</h1>
+
+<ul>
+  <% @temperaments.each do |temperament| %>
+    <li>
+      <%= link_to temperament.name, temperament_path(temperament) %>
+      (<%= temperament.breeds.count %> breeds)
+    </li>
+  <% end %>
+</ul>

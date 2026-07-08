@@ -1,2 +1,50 @@
-<h1>Breeds#show</h1>
-<p>Find me in app/views/breeds/show.html.erb</p>
+<h1><%= @breed.name %></h1>
+
+<p><strong>Group:</strong> <%= @breed.group.name %></p>
+
+<p><strong>Description:</strong></p>
+<p><%= @breed.description %></p>
+
+<p>
+<strong>Height:</strong>
+<%= @breed.min_height %> -
+<%= @breed.max_height %> inches
+</p>
+
+<p>
+<strong>Weight:</strong>
+<%= @breed.min_weight %> -
+<%= @breed.max_weight %> lbs
+</p>
+
+<p>
+<strong>Life Expectancy:</strong>
+<%= @breed.min_expectancy %> -
+<%= @breed.max_expectancy %> years
+</p>
+
+<h2>Temperaments</h2>
+
+<ul>
+<% @breed.temperaments.each do |temperament| %>
+<li><%= temperament.name %></li>
+<% end %>
+</ul>
+
+<h2>Reviews</h2>
+
+<% @breed.reviews.each do |review| %>
+
+<p>
+<strong><%= review.reviewer_name %></strong>
+
+⭐ <%= review.rating %>/5
+</p>
+
+<p><%= review.comment %></p>
+
+<hr>
+
+<% end %>
+
+<%= link_to "Back to Breeds", breeds_path %>

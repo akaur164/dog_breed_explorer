@@ -1,2 +1,13 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+<h1><%= @group.name %></h1>
+
+<h2>Breeds in this Group</h2>
+
+<ul>
+  <% @breeds.each do |breed| %>
+    <li>
+      <%= link_to breed.name, breed_path(breed) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back to Groups", groups_path %>
