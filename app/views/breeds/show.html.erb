@@ -1,50 +1,60 @@
-<h1><%= @breed.name %></h1>
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h1 class="card-title"><%= @breed.name %></h1>
 
-<p><strong>Group:</strong> <%= @breed.group.name %></p>
+    <p>
+      <strong>Group:</strong>
+      <%= link_to @breed.group.name, group_path(@breed.group) %>
+    </p>
 
-<p><strong>Description:</strong></p>
-<p><%= @breed.description %></p>
+    <p><strong>Description:</strong></p>
+    <p><%= @breed.description %></p>
 
-<p>
-<strong>Height:</strong>
-<%= @breed.min_height %> -
-<%= @breed.max_height %> inches
-</p>
+    <div class="row">
+      <div class="col-md-4">
+        <p><strong>Height:</strong><br>
+        <%= @breed.min_height %> - <%= @breed.max_height %> inches</p>
+      </div>
 
-<p>
-<strong>Weight:</strong>
-<%= @breed.min_weight %> -
-<%= @breed.max_weight %> lbs
-</p>
+      <div class="col-md-4">
+        <p><strong>Weight:</strong><br>
+        <%= @breed.min_weight %> - <%= @breed.max_weight %> lbs</p>
+      </div>
 
-<p>
-<strong>Life Expectancy:</strong>
-<%= @breed.min_expectancy %> -
-<%= @breed.max_expectancy %> years
-</p>
+      <div class="col-md-4">
+        <p><strong>Life Expectancy:</strong><br>
+        <%= @breed.min_expectancy %> - <%= @breed.max_expectancy %> years</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2>Temperaments</h2>
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h2>Temperaments</h2>
 
-<ul>
-<% @breed.temperaments.each do |temperament| %>
-<li><%= temperament.name %></li>
-<% end %>
-</ul>
+    <% if @breed.temperaments.any? %>
+      <% @breed.temperaments.each do |temperament| %>
+        <%= link_to temperament.name, temperament_path(temperament), class: "badge bg-primary text-decoration-none me-1" %>
+      <% end %>
+    <% else %>
+      <p>No temperament data available.</p>
+    <% end %>
+  </div>
+</div>
 
-<h2>Reviews</h2>
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h2>Reviews</h2>
 
-<% @breed.reviews.each do |review| %>
+    <% @breed.reviews.each do |review| %>
+      <div class="border-bottom mb-3 pb-3">
+        <strong><%= review.reviewer_name %></strong>
+        <span class="text-warning">★</span> <%= review.rating %>/5
+        <p><%= review.comment %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<p>
-<strong><%= review.reviewer_name %></strong>
-
-⭐ <%= review.rating %>/5
-</p>
-
-<p><%= review.comment %></p>
-
-<hr>
-
-<% end %>
-
-<%= link_to "Back to Breeds", breeds_path %>
+<%= link_to "Back to Breeds", breeds_path, class: "btn btn-secondary" %>
