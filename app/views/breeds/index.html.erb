@@ -1,47 +1,48 @@
-<h1>All Dog Breeds</h1>
+<div class="card shadow-sm">
+  <div class="card-body">
 
-<%= form_with url: breeds_path, method: :get, local: true do |form| %>
-  <div>
-    <%= form.label :search, "Search Breed:" %>
-    <%= form.text_field :search, value: params[:search] %>
-    <%= form.submit "Search" %>
-  </div>
-<% end %>
+    <h1 class="mb-4">All Dog Breeds</h1>
 
-<br>
+    <%= form_with url: breeds_path, method: :get, local: true, class: "row g-3 mb-4" do |form| %>
+      <div class="col-md-6">
+        <%= form.label :search, "Search Breed", class: "form-label" %>
+        <%= form.text_field :search, value: params[:search], class: "form-control", placeholder: "Enter breed name..." %>
+      </div>
 
-<p><strong>Total Breeds:</strong> <%= @breeds.total_count %></p>
+      <div class="col-md-2 d-flex align-items-end">
+        <%= form.submit "Search", class: "btn btn-primary w-100" %>
+      </div>
 
-<table border="1" cellpadding="8" cellspacing="0">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Group</th>
-      <th>Popularity</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @breeds.each do |breed| %>
-      <tr>
-        <td>
-          <%= link_to breed.name, breed_path(breed) %>
-        </td>
-
-        <td>
-          <%= breed.group.name %>
-        </td>
-
-        <td>
-          <%= breed.popularity %>
-        </td>
-      </tr>
+      <div class="col-md-2 d-flex align-items-end">
+        <%= link_to "Clear", breeds_path, class: "btn btn-secondary w-100" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <p><strong>Total Breeds:</strong> <%= @breeds.total_count %></p>
 
-<div>
-  <%= paginate @breeds %>
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Group</th>
+          <th>Popularity</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @breeds.each do |breed| %>
+          <tr>
+            <td><%= link_to breed.name, breed %></td>
+            <td><%= breed.group.name %></td>
+            <td><%= breed.popularity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="mt-4">
+      <%= paginate @breeds %>
+    </div>
+
+  </div>
 </div>
