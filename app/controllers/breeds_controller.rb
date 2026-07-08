@@ -5,6 +5,8 @@ class BreedsController < ApplicationController
     if params[:search].present?
       @breeds = @breeds.where("name LIKE ?", "%#{params[:search]}%")
     end
+
+    @breeds = @breeds.page(params[:page]).per(20)
   end
 
   def show
